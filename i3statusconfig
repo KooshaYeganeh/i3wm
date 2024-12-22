@@ -20,7 +20,7 @@ general {
 order += "cpu_temperature 0"
 order += "load"
 order += "disk /"
-order += "wireless wlp2s0"
+order += "wireless wlan0"
 order += "volume master"
 order += "battery 0"
 order += "tztime local"
@@ -29,14 +29,14 @@ order += "tztime local"
 
 tztime local {
 
-        format = "<span background='#212D31'> ⏱️ %Y-%m-%d %H:%M:%S </span>"
+        format = "⏱️ %Y-%m-%d %H:%M:%S "
 }
 
 
 battery 0 {
 
-        format = "<span background='#2F4F4F'> %status %percentage %remaining %emptytime  </span>"
-        format_down = "No battery"
+        format = "%status %percentage %remaining %emptytime"
+        format_down = "<span background='#ff5555' color='#000000'> 🔌 No battery</span>"
         status_chr = "⚡ CHR"
         status_bat = "🔋 BAT"
         status_unk = "? UNK"
@@ -56,24 +56,24 @@ volume master {
         mixer_idx = 0
 }
 
-wireless wlp2s0 {
-        format_up = "<span background=''#212D31' > 🛜  %essid </span>"
-        format_down = "<span background=''#212D31' > 🛜 Disconnected </span>"
+wireless wlan0 {
+        format_up = "<span background=''#212D31' >📶  %essid </span>"
+        format_down = "<span background=''#212D31' > 📶 Disconnected </span>"
 }
 
 
 disk "/" {
-        format = "<span background='#212D31'>   %free Free </span>"
+        format = "<span background='#64a3a3'> 💾 %free Free </span>"
 }
 
 
 load {
-        format = "<span background='#ff5555' color='#000000'>   %5min Load </span>"
+        format = "🔲 %5min Load "
 }
 
 
 
 cpu_temperature 0 {
-        format = "<span background='#ff5555' color='#000000'>   %degrees °C </span>"
+        format = "<span background='#ff5555' color='#000000'> 🌡 %degrees °C </span>"
         path = "/sys/class/thermal/thermal_zone0/temp"
 }
