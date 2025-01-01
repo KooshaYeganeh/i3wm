@@ -6,74 +6,71 @@
 # ß
 # If the above line is not correctly displayed, fix your editor first!
 
-
 general {
-        output_format = "i3bar"
-        colors = false
-        markup = pango
-        interval = 1
-  	color_good = "#a3be8c"
-  	color_degraded = "#ebcb8b"
-  	color_bad = "#bf616a"
+    output_format = "i3bar"
+    colors = true
+    markup = pango
+    interval = 1
+    color_good = "#a3be8c"
+    color_degraded = "#ebcb8b"
+    color_bad = "#bf616a"
 }
 
+# Status bar blocks order
 order += "cpu_temperature 0"
 order += "load"
 order += "disk /"
 order += "wireless wlan0"
+order += "ethernet br0"
 order += "volume master"
 order += "battery 0"
 order += "tztime local"
 
-
-
+# Time block configuration
 tztime local {
-
-        format = "⏱️ %Y-%m-%d %H:%M:%S "
+    format = "⏱️ %Y-%m-%d %H:%M:%S "
 }
 
-
+# Battery block configuration
 battery 0 {
-
-        format = "%status %percentage %remaining %emptytime"
-        format_down = "<span background='#ff5555' color='#000000'> 🔌 No battery</span>"
-        status_chr = "⚡ CHR"
-        status_bat = "🔋 BAT"
-        status_unk = "? UNK"
-        status_full = "☻ FULL"
-        path = "/sys/class/power_supply/BAT%d/uevent"
-        low_threshold = 10
+    format = "%status %percentage %remaining %emptytime"
+    format_down = "<span background='#ff5555' color='#000000'> 🔌 No battery </span>"
+    status_chr = "⚡ CHR"
+    status_bat = "🔋 BAT"
+    status_unk = "? UNK"
+    status_full = "☻ FULL"
+    path = "/sys/class/power_supply/BAT%d/uevent"
+    low_threshold = 10
 }
 
-
-
-
+# Volume block configuration
 volume master {
-        format = "<span background='#2F4F4F'> 🔊  %volume </span>"
-        format_muted = "<span background='#212D31'> 🔇 Muted </span>"
-        device = "default"
-        mixer = "Master"
-        mixer_idx = 0
-}
-
-wireless wlan0 {
-        format_up = "<span background=''#212D31' >📶  %essid </span>"
-        format_down = "<span background=''#212D31' > 📶 Disconnected </span>"
+    format = "<span background='#2F4F4F'> 🔊 %volume </span>"
+    format_muted = "<span background='#212D31'> 🔇 Muted </span>"
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
 }
 
 
+# Ethernet block configuration
+ethernet br0 {
+    format_up = "<span background='#212D31'>📶 Connected </span>"
+    format_down = "<span background='#212D31'> 📶 Disconnected </span>"
+}
+
+# Disk usage block configuration
 disk "/" {
-        format = "<span background='#64a3a3'> 💾 %free Free </span>"
+    format = "<span background='#005d76'> 💾 %free Free </span>"
 }
 
-
+# Load block configuration
 load {
-        format = "🔲 %5min Load "
+    format = "🔲 %5min Load "
 }
 
-
-
+# CPU temperature block configuration
 cpu_temperature 0 {
-        format = "<span background='#ff5555' color='#000000'> 🌡 %degrees °C </span>"
-        path = "/sys/class/thermal/thermal_zone0/temp"
+    format = "<span background='#ff5555' color='#000000'> 🌡 %degrees °C </span>"
+    path = "/sys/class/thermal/thermal_zone0/temp"
 }
